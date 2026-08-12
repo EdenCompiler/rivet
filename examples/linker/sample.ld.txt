@@ -1,0 +1,14 @@
+# RIVET sample layout script.
+# Two regions: 4K ROM at 0x80000000 + 16K RAM at 0x80100000.
+entry  _start
+fill   0xff
+
+region rom origin=0x80000000 length=4K  fill=0x00
+region ram origin=0x80100000 length=16K
+
+place  boot.bin   in rom
+# more inputs could be placed:
+# place app.bin   in rom at 0x800
+
+output image.bin
+define VEC_TABLE = 0x80000000
